@@ -1,7 +1,7 @@
 #include <WiFi.h>
 
 const char* ssid = "GM";       // Replace with your network SSID
-const char* password = "1922131773"; // Replace with your network password
+const char* password = "xxxxxxx"; // Replace with your network password
 
 void setup() {
   Serial.begin(115200);
