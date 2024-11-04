@@ -9,10 +9,12 @@ IPAddress subnet(255, 255, 255, 0);     // Subnet mask
 const char* ssid = "GM";
 const char* password = "1922131773";
 const IPAddress targetIP(192, 168, 1, 101); // Child node IP
+const char* nodeName = "Main Node"; // Define the name of this node
 
 void setup() {
     Serial.begin(115200);
-    Serial.println("Node Role: Main Node");
+    Serial.print("Node Role: ");
+    Serial.println(nodeName); // Display the name of the node
 
     // Connect to Wi-Fi with static IP configuration
     WiFi.config(staticIP, gateway, subnet);
@@ -24,20 +26,26 @@ void setup() {
         Serial.print(".");
     }
     Serial.println();
-    Serial.print("Connected to WiFi. Main Node IP Address: ");
+    Serial.print("Connected to WiFi. ");
+    Serial.print(nodeName);
+    Serial.print(" IP Address: ");
     Serial.println(WiFi.localIP());
 }
 
 void loop() {
     // Check Signal Strength (RSSI)
     long rssi = WiFi.RSSI();
-    Serial.print("Signal Strength (RSSI): ");
+    Serial.print("Signal Strength (RSSI) at ");
+    Serial.print(nodeName);
+    Serial.print(": ");
     Serial.print(rssi);
     Serial.println(" dBm");
 
     // Ping the child node to check connectivity
     Serial.print("Pinging ");
     Serial.print(targetIP);
+    Serial.print(" from ");
+    Serial.print(nodeName);
     Serial.print(" ... ");
     if (Ping.ping(targetIP)) {
         Serial.println("Ping successful");
